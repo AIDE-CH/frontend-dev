@@ -1,0 +1,42 @@
+download qemu:
+  https://www.qemu.org/download/
+  
+download ubuntu:
+ https://ubuntu.com/download
+ 
+download HAXM:
+https://www.qemu.org/2017/11/22/haxm-usage-windows/
+
+tool links:
+ https://wiki.qemu.org/Links
+ https://gitlab.com/qtemu/gui
+ 
+----- commands --------------
+create a hard drive image:
+c:\qemu\qemu-img.exe create -f qcow2 D:\ubuntu\ubu.img 40G
+ 
+run an emulater with a cdrom pointing at the downloaded ubuntu image:
+c:\qemu\qemu-system-x86_64 -cdrom "D:\ubuntu\ubuntu-22.04.5-desktop-amd64.iso" -drive file="D:\ubuntu\ubu.img" -m 8G -vga virtio -display sdl,gl=on -machine type=q35,accel=hax
+ 
+run without the booting medium (without cdrom):
+c:\qemu\qemu-system-x86_64 -drive file=.\ubu.img -m 8G -vga virtio -display gtk,gl=on -machine type=q35,accel=hax
+
+ 
+
+------ bash commands ----
+change directory
+ch <directory-name>
+
+change to parent directory
+cd ..
+
+print working directory 
+pwd
+
+make directord
+mkdir  <directory-name>
+
+list files and directories
+ls
+
+

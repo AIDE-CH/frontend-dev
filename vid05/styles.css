@@ -1,0 +1,53 @@
+body{
+    /* background-color: lightcyan;
+    margin-left: 0px;
+    padding-left: 0px; */
+}
+table{
+    border: solid; 
+    border-collapse: collapse; 
+    border-width: 1px;
+}
+th, tr, td{
+    border: solid; 
+    border-width: 2px;
+}
+p{
+    color: #f6f3f3; 
+    background-color: rgb(120, 118, 118);
+    font-family: Arial; 
+    font-size: small;
+    font-weight: bolder;
+    font-style: italic;
+
+    border: dashed; 
+    border-color: rgb(68, 66, 66);
+    border-width: 2px;
+
+    padding: 4px;
+    padding-top: 30px;
+    margin: 2px;
+
+    display: inline-block;
+
+    max-width: 200px;
+}
+.differentStyle{
+    background-color: green;
+    font-style: normal;
+}
+#secondParagraph{
+    background-color: blue;
+    border-width: 3px;
+}
+.topParagraph{
+    padding: 4px;
+    font-style: normal;
+    font-weight: lighter;
+}
+.subText{
+    color: green;
+    border-style: solid;
+    border-width: 2px;
+    display: block;
+}

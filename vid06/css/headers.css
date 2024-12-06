@@ -1,0 +1,219 @@
+body, button{
+    background-color: rgb(0, 10, 30);
+    color: white;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.left-part{
+    display: flex;
+}
+
+.logo-button{
+    border: none;
+    display: flex;
+    margin-right: 2px;
+}
+
+.logo-img{
+    width: 24px;
+}
+
+.logo-span{
+    color: rgb(233, 136, 9);
+    font-size: 9px;
+    position: relative;
+    left: -2;
+    top: 16px;
+}
+
+.location-button{
+    border: none;
+    display: flex;
+}
+
+.location-outer-div{
+    display: flex;
+    align-items: center;
+}
+
+.location-img{
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.location-inner-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.location-first-p{
+    font-size: 10px;
+}
+
+.location-second-p{
+    font-size: 12px;
+}
+
+/* midle part */
+.middle-part{
+    flex: 1;
+    display: flex;
+    height: 24px;
+    margin-right: 4px;
+    margin-left: 4px;
+    border-radius: 4px;
+}
+
+.middle-part:has(> #search-text:focus){
+    outline: solid;
+    outline-width: 2px;
+    outline-color: rgb(233, 136, 9);
+}
+
+.cat-select{
+    border-width: 0px;
+    border-radius: 4px 0px 0px 4px;
+    background-color: lightgray;
+    color: black;
+    font-size: 10px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.cat-select:hover{
+    background-color: rgb(223, 220, 220);
+}
+
+.cat-select:focus{
+    outline: solid;
+    outline-width: 2px;
+    outline-color: rgb(233, 136, 9);
+}
+
+.cat-option{
+}
+
+.search-text{
+    flex: 1;
+    border-radius: 0px;
+    border: none; 
+    border-left: solid 1px gray;
+    outline: none;
+}
+
+.search-text::placeholder{
+    font-size: 10px;
+}
+
+.search-button{
+    background-color: rgb(243, 168, 71);
+    border: 0px;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+}
+
+.search-button:hover{
+    background-color: rgb(237, 141, 16);    
+}
+
+.search-button:focus{
+    outline: solid;
+    outline-width: 2px;
+    outline-color: rgb(233, 136, 9);
+}
+
+.search-button:focus{
+}
+
+.search-img{
+    width: 24px;
+}
+
+/* right part */
+.right-part{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.language-button, .user-button, .film-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0px;
+    font-size: 9px;
+    height: 24px;
+    margin: 0px;
+    padding: 0px;
+    margin-right: 2px;
+}
+
+.language-img{
+    width: 24px;
+    height: 16px;
+}
+
+.language-label{
+    margin-left: -2px;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+.user-button{
+    flex-direction: column;
+    border-left: solid 1px;
+} 
+
+.user-button div{
+    margin-left: 2px;
+    width: 100%;
+    text-align: left;
+}
+
+.user-button div+div{
+    font-weight: bolder;
+}
+
+.film-button{
+}
+
+.film-img{
+    width: 20px;
+}
+
+.film-div{
+}
+
+#num{
+    color: rgb(233, 136, 9); 
+    margin-left: -4px;
+    margin-top: -14px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.logo-button:hover, .location-button:hover, .language-button:hover, .user-button:hover, .film-button:hover{
+    outline: solid 1px white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* .test{
+    background-color: red;
+}
+
+.test::before{
+    content: "this is content from css";
+    background-color: green;
+}
+.test::after{
+    content: "this is content from css";
+    background-color: green;
+} */

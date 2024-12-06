@@ -1,0 +1,51 @@
+
+.sticky-header{ 
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: space-around;
+}
+
+.sh-inner-div{
+    display: flex;
+    padding: 4px 5px;
+    align-items: center;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(41, 38, 38, 0.6);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.sh-home, .sh-movie, .sh-tv-shows, .sh-live-tv{
+    padding: 4px;
+    margin: 0px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sh-home:hover, .sh-movie:hover, .sh-tv-shows:hover, .sh-live-tv:hover, .sh-evaluations:hover{
+    color: black;
+    background-color: white;
+}
+
+.sh-home{
+    
+}
+
+.sh-movie{
+}
+
+.sh-tv-shows{
+}
+
+.sh-live-tv{
+}
+
+.sh-evaluations{
+    padding: 4px;
+    padding: 4px;
+    margin: 0px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    background: radial-gradient(50% 50% at 50% 0,rgba(255,255,255,.8) ,rgba(255, 255, 255, 0.2));
+}

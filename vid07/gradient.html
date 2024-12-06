@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .testButton{
+            background: linear-gradient(yellow, green);
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .testButton:hover{
+            background: linear-gradient(green, yellow);
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100px; height: 40px;" class="testButton">
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+    <div style="background: linear-gradient(yellow, green);
+                width: 100px; height: 100px;">
+    </div>
+    
+    <div style="background: linear-gradient(yellow, green, yellow, green, yellow);
+                width: 100px; height: 100px;">
+    </div>
+    
+    <div style="background: linear-gradient(90deg, yellow, green, yellow);
+                width: 100px; height: 100px;">
+    </div>
+    
+    <div style="background: radial-gradient(yellow, green);
+                width: 100px; height: 100px;">
+    </div>
+    
+    <div style="background: radial-gradient( yellow, green, black);
+                width: 100px; height: 100px;">
+    </div>
+    
+    <div style="background: radial-gradient(50% 50% at 100% 0%, red, green, black);
+                width: 100px; height: 100px;">
+                
+    </div>
+
+    <div style="background: conic-gradient( yellow, green, black, yellow);
+                width: 100px; height: 100px;">
+    </div>
+
+    
+
+    <div style="background: radial-gradient(50% 50% at 50% 50%, yellow, green, black);
+                width: 100px; height: 100px; border-radius: 50px; display: flex; align-items: center; justify-content: center;">
+                
+        <div style="background: radial-gradient(50% 50% at 0% 50%, yellow, green, green);
+                    width: 60px; height: 60px; border-radius: 50px;">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+.content-div{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.content-item{
+}
+
+.content-item img{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+
+.content-item img:hover{
+    width: 250px;
+    height: 250px;
+    margin: -25px;
+    position: relative;
+}
+
+@media screen and (max-width: 1000px){
+    .content-div{
+        grid-template-columns: 33% 33% 33%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .content-div{
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .content-div{
+        grid-template-columns: 100%;
+    }
+}

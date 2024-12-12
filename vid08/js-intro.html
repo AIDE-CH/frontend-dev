@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //document.body.innerText = "Hello javacript";
+        console.log("Hello javascript");
+
+        var x = 5;
+        var y = x * 2;
+        console.log(y);
+        x++;
+        console.log(x);
+        x += 4;
+        x = x % 5;
+        x %= 5;
+        console.log(11/2);
+        var x = true;
+        console.log(x);
+        x = "this is a string";
+        console.log(x);
+
+        // typeof
+
+        console.log(typeof(1));
+        console.log(typeof("1"));
+        console.log(typeof( {i:1} ));
+        console.log(typeof(null)); 
+        console.log(typeof( f ));
+        console.log(typeof( true ));
+        console.log(typeof(1.1));
+
+        // strings
+        x += " more text";
+        console.log( "x=" + x );
+        x = x.toUpperCase();
+        console.log("x.toUpperCase()=" + x);
+        console.log("x.toLowerCase=" + x.toLowerCase());
+        console.log("x.charAt(5)=" + x.charAt(5) );
+        console.log("x.charAt(5)=" + x.charAt(26) );
+
+        // Math operations on numbers
+        console.log("3**2=" + 3**2);
+        console.log("3**2=" + Math.pow(3, 2));
+        console.log("cos(pi)=" + Math.cos(Math.PI));
+
+        // array
+        var a = [1, 2, 2];
+        a.push(44);
+        a.push(55);
+        a.push(66);
+        a.push("66");
+        a.push({i:1});
+        a.splice(6, 2);
+        console.log(a);
+
+        var sum = 0;
+        for(var i = 0; i < a.length; i++){
+            sum += a[i];
+        }
+        console.log("sum=" + sum);
+
+        var sum = 0;
+        var i = 0; 
+        while(i < a.length){
+            sum += a[i];
+            i++;
+        }
+        console.log("sum=" + sum);
+
+        
+        var sum = 0;
+        var i = 0; 
+        do{
+            sum += a[i];
+            i++;
+        }while(i < a.length);
+        console.log("sum=" + sum);
+
+        
+        var sum = 0;
+        for(var i = 0; i < a.length; i++){
+            if((a[i] >= 10) &&  (a[i] != 66) ){
+                sum += a[i];
+            }
+        }
+        console.log("sum=" + sum);
+
+        // adding array elemnets as text inside div tags
+        
+        for(var i = 0; i < a.length; i++){
+
+            var div = document.createElement("div");
+            div.innerText = "a[" + i + "]=" +  a[i];
+            document.body.appendChild(div);
+        }
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

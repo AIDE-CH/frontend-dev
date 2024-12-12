@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // functions
+        
+        // var muliply =  function(a, b, c){
+        //     function multiply2(a, b){
+        //         return a*b;
+        //     }
+        //     return multiply2(multiply2(a, b), c);
+        // }
+        // console.log(muliply(10, 2, 2));
+
+        // objects
+        var x = 5;
+        var y = 4;
+        var point1 = {
+            x: 10,
+            y:20,
+            print: function(){
+                console.log("point(" + this.x + ", " + this.y + ")");
+            }
+        };
+
+        // console.log(typeof(point));
+        // point.print();
+
+        var point2 = Object.create(point1);
+        point2.x = 20;
+        // point1.print();
+        // point2.print();
+
+        function Point(x_, y_){
+            this.x = x_;
+            this.y = y_;
+            this.print = function(){
+                console.log("point(" + this.x + ", " + this.y + ")");
+            };
+        }
+
+        var point3 = new Point(1, 2);
+        // point3.print();
+        
+        var point4 = new Point(3, 4);
+        // point4.print();
+        
+        var point5 = new Point(5, 6);
+        // point5.print();
+
+        var proto = Point.prototype;
+        proto.z = 7;
+        
+        var proto = Object.getPrototypeOf(point1);
+        Object.defineProperty(proto, "z", {get:function(){return 5;}});
+        proto.z = 5;
+
+        
+        // console.log(point1.z);
+        // console.log(point2.z);
+        // console.log(point3.z);
+        // console.log(point4.z);
+        // console.log(point5.z);
+
+        // for in/of
+
+        for(var p in point1){
+            // console.log(p);
+        }
+        
+        var arr = new Array();
+        arr.push(13);
+        arr.push(2234);
+        arr.push(323);
+        
+        arr.prop_str = "str prop";
+
+        for(var p of arr){
+            // console.log(p);
+        }
+        
+        for(var p in arr){
+            // console.log(p);
+        }
+        
+        // classes
+
+        class Pnt{
+            _x = 0;
+            _y = 0;
+
+            constructor(x, y){
+                this.x = x;
+                this.y = y;
+            }
+
+            print(){
+                console.log("pnt(" + this._x + ", " + this._y + ")");
+            }
+
+            get x(){
+                return this._x;
+            }
+
+            set x(x){
+                this._x = x;
+            }
+
+            get y(){
+                return this._y;
+            }
+
+            set y(y){
+                this._y = y;
+            }
+        };
+
+        class Pnt3 extends Pnt {
+            backColor = "white";
+            foreColor = "green";
+            _z = 0;
+
+            constructor(x, y, z, backColor, foreColor){
+                super(x, y);
+                this._z = z;
+                this.backColor = backColor;
+                this.foreColor = foreColor;
+            }
+
+
+            print(){
+                console.log("pnt(" + this._x + ", " + this._y + ", " + this._z + ")");
+            }
+            
+            toString(){
+                return "pnt(" + this._x + ", " + this._y + ", " + this._z + ")";
+            }
+
+            get z(){
+                return this._z;
+            }
+
+            set z(z){
+                this._z = z;
+            }
+
+        };
+
+        var pnt1 = new Pnt(5, 4);
+        var pnt1 = new Pnt(5, 4);
+        pnt1.x = 55;
+        pnt1.y = 44;
+        // pnt1.print();
+        var pnt2 = new Pnt(3, 7);
+        // pnt2.print();
+        
+        var pnt3 = new Pnt3(3, 7, 10);
+        // pnt3.print();
+
+        const pnt4 = new Pnt3(1, 2, 3);
+        //pnt4 = new Pnt3(1, 2, 3);
+        // pnt4.print();
+
+        let pnt5 = new Pnt3(1, 2, 3);
+        pnt5 = new Pnt3(1, 2, 4);
+        // pnt5.print();
+
+
+        
+        // adding array elemnets as text inside div tags
+        const a = [new Pnt3(1, 2, 3, "white", "black"), 
+            new Pnt3(1, 2, 3, "white", "green"), 
+            new Pnt3(1, 2, 3, "black", "white")];
+        for(var i = 0; i < a.length; i++){
+            var div = document.createElement("div");
+            div.innerText = a[i].toString();
+            div.style.backgroundColor = a[i].backColor;
+            div.style.color = a[i].foreColor;
+            document.body.appendChild(div);
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js-cs/banner.js"></script>
+    <script src="js-common/physicist.js"></script>
+    <script src="js-cs/fillGrid.js"></script>
+    <title>Physicists</title>
+    <style>
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="messageBanner" ></div>
+    
+        <div>
+            <input type="text" id="phName" placeholder="Name of the physicist"> 
+        </div>
+        <div>
+            <input type="number" id="phBirthYear" placeholder="Year of birth"> 
+        </div>
+        <div>
+            <input type="text" id="phBirthPlace" placeholder="Place of birth"> 
+        </div>
+        <div>
+            <input type="text" id="phComment" placeholder="Write some theories or work"> 
+        </div>
+        <div>
+            <button id="Save" onclick="phSave()">Save</button>
+            <button id="cancel" onclick="phCancel()">Canel</button>
+        </div>
+    
+        <hr/>
+    
+        <table id="phGrid">
+        </table>
+
+
+
+    <script>
+        const bnr = new MsgBanner(document.getElementById("messageBanner"));
+
+        
+        const phName = document.getElementById("phName");
+        const phBirthYear = document.getElementById("phBirthYear");
+        const phBirthPlace = document.getElementById("phBirthPlace");
+        const phComment = document.getElementById("phComment");
+        const phGrid = document.getElementById("phGrid");
+
+        fillGrid(phGrid, phSelect, phDelete);
+
+        function phSelect(ph){
+            bnr.clear();
+            phName.value = ph.name;
+            phBirthYear.value = ph.birthYear;
+            phBirthPlace.value = ph.birthPlace;
+            phComment.value = ph.comments;
+        }
+        
+        async function phDelete(ph){
+            try{
+                const confRes = confirm(`Are you sure you want to delete ${ph.name}?`);
+                if(!confRes){
+                    return;
+                }
+                bnr.clear();
+                const phCurr = new Physicist( ph.name, null, null, null);
+                
+                const req_opts = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(phCurr)
+                };
+                const response = await fetch("/physicist/delete", req_opts);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}, Response: ${await response.text()}`);
+                }
+
+                bnr.addInfo(`physicist (${ph.name}) is deleted`);
+                fillGrid(phGrid, phSelect, phDelete);
+            }catch(ex){
+                bnr.addErr(ex.message);
+            }
+        }
+
+        function phCancel(){
+            bnr.clear();
+            phName.value = null;
+            phBirthYear.value = null;
+            phBirthPlace.value = null;
+            phComment.value = null;
+        }
+
+        async function phSave(){
+            try{
+                bnr.clear();
+                const phCurr = new Physicist( phName.value, phBirthYear.value, phBirthPlace.value, phComment.value);
+                
+                
+                const req_opts = {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(phCurr)
+                };
+                const response = await fetch("/physicist/update", req_opts);
+                if(!response.ok){
+                    throw new Error(`Response status: ${response.status}, Response: ${await response.text()}`);
+                }            
+                
+                bnr.addInfo(`physicist (${phCurr.name}) is updated/added`);
+                fillGrid(phGrid, phSelect, phDelete);
+            }catch(ex){
+                bnr.addErr(ex.message);
+            }
+        }
+        
+        // const ph = db.getByName("James Clerk Maxwell");
+        // bnr.addInfo(`${ph.name}, ${ph.birthYear}, ${ph.birthPlace}, ${ph.comments}`);
+        
+        //const ph = new window.Physicist("Einstein", "1879", "Germany", "relativity theory");
+        // bnr.addInfo(ph.name + ", " + ph.birthYear + ", " + ph.birthPlace + ", " + ph.comments)
+
+        // bnr.addInfo("Some info");
+        // bnr.addErr("Some err");
+        // bnr.addWrn("Some wrn");
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,12 @@
+.hello-message{
+  background-color: black;
+  color: white;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

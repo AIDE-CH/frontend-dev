@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM in Javascript</title>
+</head>
+<body>
+
+        <textarea id="userInput" style="width: 500px; height:100px" oninput="inputChanged(event)">Why is the sky blue?</textarea>
+        <hr/>
+        <div id="outDiv"> 
+
+        </div>
+<!-- 
+    <script src="./ollama.js"></script> -->
+    <script>
+        console.log("hello");
+        
+        const chatUrl = "http://127.0.0.1:11434/api/chat";
+        
+        async function sendRequest(inputString, callback) {
+            const bdy = {
+                model: "llama3.2:1b",
+                messages: [{
+                    role: "user",
+                    content: inputString
+                }],
+                stream: true
+            };
+            
+            const req_ops = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json"
+                },
+                body: JSON.stringify(bdy)
+            };
+
+            let response = await fetch(chatUrl, req_ops);
+
+            async function readAllChunks(response) {
+                const decoder = new TextDecoder("utf-8");
+                const reader = response.body.getReader();
+                let done, value;
+                let txt = "";
+
+                while(!done){
+                    ({ value, done } = await reader.read());
+                    if(done){
+                        return;
+                    }
+                    const retStr = decoder.decode(value);
+                    const parts = retStr.split("\n");
+
+                    for (const part of parts) {
+                        if(part == null) continue;
+                        if(part.length < 3) continue;
+                        try {
+                            const retJson = JSON.parse(part);
+                            txt += retJson["message"]["content"];
+                            callback(txt);
+                        } catch (error) {
+                            console.warn("invalid json: ", part);
+                        }
+                    }
+
+                }
+            }
+
+            await readAllChunks(response);
+        }
+
+        function addDiv(text){
+            const outDiv = document.getElementById("outDiv");
+            const div = document.createElement("div");
+            div.innerText = text;
+            if(outDiv.children.length > 0){
+                const hr = document.createElement("hr");
+                outDiv.insertBefore( hr ,outDiv.children[0]);
+                outDiv.insertBefore(div, hr);
+            }else{
+                outDiv.appendChild(div);
+            }
+            return div;
+        }
+
+        async function inputChanged(event){
+            if(event.inputType == "insertLineBreak"){
+                const div = addDiv("");
+                const responseText = await sendRequest(event.srcElement.value.replaceAll("\n", ""),
+                (updatedText) => {
+                    div.innerHTML = updatedText.replaceAll("\n", "<br/>");
+                });
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

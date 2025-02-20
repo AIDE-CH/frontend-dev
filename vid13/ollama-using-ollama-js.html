@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM in Javascript</title>
+</head>
+<body>
+
+        <textarea id="userInput" style="width: 500px; height:100px" oninput="inputChanged(event)">Why is the sky blue?</textarea>
+        <hr/>
+        <div id="outDiv"> 
+
+        </div>
+
+    <script src="./ollama-updated.js"></script>
+    <script>
+        console.log("hello");
+        const o = new Ollama();
+        
+        //const chatUrl = "http://127.0.0.1:11434/api/chat";
+        
+        async function sendRequest(inputString, callback) {
+            const message = { role: 'user', content: inputString }
+            const response = await o.chat({ model: 'llama3.2:1b', messages: [message], stream: true });
+            str = "";
+            for await (const part of response) {
+                str += part.message.content;
+                if(callback){
+                    callback(str);
+                }
+            }
+            return str;
+        }
+
+        function addDiv(text){
+            const outDiv = document.getElementById("outDiv");
+            const div = document.createElement("div");
+            div.innerText = text;
+            if(outDiv.children.length > 0){
+                const hr = document.createElement("hr");
+                outDiv.insertBefore( hr ,outDiv.children[0]);
+                outDiv.insertBefore(div, hr);
+            }else{
+                outDiv.appendChild(div);
+            }
+            return div;
+        }
+
+        async function inputChanged(event){
+            if(event.inputType == "insertLineBreak"){
+                const div = addDiv("");
+                const responseText = await sendRequest(event.srcElement.value.replaceAll("\n", ""),
+                (updatedText) => {
+                    div.innerHTML = updatedText.replaceAll("\n", "<br/>");
+                });
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
